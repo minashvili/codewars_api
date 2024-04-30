@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 .venv
 kata_from_codewars.db
+=======
+.idea/*
+>>>>>>> dfa31ac (First function for challenges parsing is added. README is updated)
