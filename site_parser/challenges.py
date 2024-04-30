@@ -61,4 +61,4 @@ def get_challenges() -> list[dict]:
         pass
 
 
-print(get_challenges())
+#print(get_challenges())
