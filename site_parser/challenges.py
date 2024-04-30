@@ -59,3 +59,6 @@ def get_challenges() -> list[dict]:
     except EmptyResultException:
         # todo: Replace by logging
         pass
+
+
+print(get_challenges())

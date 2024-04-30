@@ -1,5 +1,3 @@
-# [{id:123, name: 'super-admin', level: 'hyomoyo-8'}, ...]
-
 
 import sqlite3
 
@@ -9,9 +7,9 @@ try:
     print("connection to SQLite")
 
     sqlite_insert_query = """INSERT INTO kata
-                          (id, name, level)
+                          (ext_id, name)
                           VALUES
-                          (1, 'Test', 'hyomoyo-8');"""
+                          ('5426006a60d777c556001aad', 'Dithering');"""
     
     count = cursor.execute(sqlite_insert_query)
     sqlite_connection.commit()
