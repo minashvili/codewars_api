@@ -1,0 +1,2 @@
+
+CREATE TABLE kata (Id INTEGER, Name TEXT, Level TEXT);
