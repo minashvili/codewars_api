@@ -1,3 +1,4 @@
 .idea/*
 .venv
 kata_from_codewars.db
+__pycache__/
