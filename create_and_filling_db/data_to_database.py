@@ -1,7 +1,4 @@
-
-from site_parser import challenges
 import sqlite3
-
 
 def work_with_db(data_from_codewars: list[dict]) -> str|None:
 
