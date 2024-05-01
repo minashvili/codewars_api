@@ -22,3 +22,9 @@ Here we are trying to create fast API endoint for Telegram bot for asking of use
 - [ ] Level settings: add an ability to set Level for suggested Katas by bot;
 - [ ] Kata completion notification: send notification by bot when user from bot's chat completed the Kata;
 - [ ] Reminder for users who didn't complete Kata: send a message with tagging of users, who didn't complete daily Kata;
+
+## TODO (How to deploy it)
+- [ ] git pull repo https://github.com/minashvili/codewars_api.git
+- [ ] create the kata_from_codewars.db (sqlite) and use this to create a table create_table.sql 
+- [ ] pip install -r requirements.txt
+- [ ] data_from_parser_to_database.py
