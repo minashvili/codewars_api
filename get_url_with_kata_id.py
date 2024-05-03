@@ -30,5 +30,5 @@ def randomly_select_id(list_id_from_kata: list[tuple]) -> str:
     return f'https://www.codewars.com/kata/{random_id[1]}'
 
 
-print(randomly_select_id(get_id_with_out_solution('/home/george/Documents/codewars_api/kata_from_codewars.db')))
+print(randomly_select_id(get_id_with_out_solution('kata_from_codewars.db')))
 
