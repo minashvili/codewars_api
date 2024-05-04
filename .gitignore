@@ -2,3 +2,4 @@
 .venv
 kata_from_codewars.db
 __pycache__/
+login_pass.txt
