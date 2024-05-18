@@ -1,13 +1,19 @@
 
+import os
+from dotenv import load_dotenv
 import sqlite3
 import random
 import telebot
 from telebot import types
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
-bot = telebot.TeleBot('5157162549:AAEQe3F2rIuLgXwGw1yh3U_vfGyqt_uT5eM')
+
 get_problem = ''
 cout_done = 0
+
+bot_api_key = os.getenv('SECRET_KEY')
+bot = telebot.TeleBot(bot_api_key)
+
 
 def get_id_with_out_solution(path_to_db: str) -> list[tuple]|None:
 
@@ -98,18 +104,14 @@ def get_text_messages(message):
             cout_done = 0
 
 
+load_dotenv()
 triz('') #Это должна быть другая функция, которая будет в разное время дня постить задачи. Скрипт запущен а эта фукнция раз в 12 часов дергает функцию
 bot.polling(none_stop=True, interval=0) 
+
 
 #1) Логика отправки новых задач 
 #Скрипт после двух Done должен понимать, что на сегодня ему хватит и ждать завтра чтобы прислать новую задачу 
 #Нужны условия если вдруг мы не успели за день сделать, что он тогда делает ? ждет дальше или новую задачу присылает ?
 #Если скрипт всегда в сети то надо дергать функция triz('') для получения новой задачи 
-
-#2)
-#Добавить подтягивания ключа для бота
-
-
-
 
 
