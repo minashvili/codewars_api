@@ -6,6 +6,7 @@ import random
 import telebot
 from telebot import types
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+import threading
 
 
 get_problem = ''
@@ -63,6 +64,10 @@ def insert_solution_to_db(path_to_db_update: str, username: str,  ext_id: str) -
     
     return None
 
+def super_reset() -> None:
+    global cout_done
+    cout_done = 0
+    triz('')
 
 @bot.message_handler(commands=['triz'])
 def triz(message):
@@ -80,7 +85,6 @@ def triz(message):
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
 
-    
     if message.text == 'Done':
         
         if message.from_user.last_name:
@@ -90,32 +94,49 @@ def get_text_messages(message):
 
         id_problem_codewars = get_problem.split('/')[-1]
 
-        bot.send_message('-1002115846059', (
-            f'Противоречие 👾{id_problem_codewars} уничтожено!'
-            f'Академия ТРИЗ гордится тобой {get_name_user}')) #ответ бота
-        #Выполнить запись в базу с решением добавлением ЮЗЕРА В ПОЛЕ РЕШЕНИЕ или что-то такое 
-        insert_solution_to_db('kata_from_codewars.db', get_name_user, id_problem_codewars)
         global cout_done
-        cout_done += 1
 
-        if cout_done > 1:
-            bot.send_message('-1002115846059', 'Счетчик уничтожения противоречия больше двух, сигнал Академии ТРИЗ успешно терминируется. Поиск нового противоречия.')
-            triz('')
-            cout_done = 0
+        if cout_done < 1:
+            bot.send_message('-1002115846059', (
+                f'Противоречию 👾{id_problem_codewars} нанесен первый удар!'
+                f' Академия ТРИЗ гордится тобой {get_name_user}')) #Ответ бота
+            #Выполнить запись в базу с решением добавлением ЮЗЕРА В ПОЛЕ РЕШЕНИЕ 
+            insert_solution_to_db('kata_from_codewars.db', get_name_user, id_problem_codewars)
+            cout_done += 1
+            print(cout_done)
+
+        elif cout_done <= 1:
+            bot.send_message('-1002115846059', (
+                f'Противоречию 👾{id_problem_codewars} нанесен решаюший удар!'
+                f' Противоречие уничтожено! Так держать {get_name_user}!'))
+            insert_solution_to_db('kata_from_codewars.db', get_name_user, id_problem_codewars)
+            cout_done += 1            
+            print(cout_done)
+            # Тут задается следующие вермя, когда дергнится функция Триза triz('') и cout_done = 0
+            timer = threading.Timer(random.randint(1,27), super_reset)
+            timer.start()
+
+        else:
+            bot.send_message('-1002115846059', '📡 Подтверждение отсутствия противоречий.')
+            #triz('')
+            #cout_done = 0
+            print(cout_done)
+
+    elif message.text == 'New_problem': #(Тестовая херовина)
+        triz('')
+        cout_done = 0
+
+
 
 
 load_dotenv()
-triz('') #Это должна быть другая функция, которая будет в разное время дня постить задачи. Скрипт запущен а эта фукнция раз в 12 часов дергает функцию
+triz('') 
 bot.polling(none_stop=True, interval=0) 
 
 
-#1) Скрипт после двух Done должен понимать, 
-# что на сегодня ему хватит и ждать завтра чтобы прислать новую задачу 
 
-# Если скрипт всегда в сети то надо дергать функция triz('') для получения новой задачи 
+#Функция threading должна 
+#2 - задать рандомное вермя если ее вызвали и уйти в ансинхроное ожидание 
 
 
-#3) 
-#Нужны условия если вдруг мы не успели за день сделать, 
-#что он тогда делает ? ждет дальше или новую задачу присылает ?
 
