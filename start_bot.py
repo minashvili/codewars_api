@@ -113,7 +113,7 @@ def get_text_messages(message):
             cout_done += 1            
             print(cout_done)
             # Тут задается следующее время, когда дернутся функции Триза triz('') и cout_done = 0
-            timer = threading.Timer(random.randint(1,27), super_reset)
+            timer = threading.Timer(random.randint(43200,172800), super_reset)
             timer.start()
 
         else:
