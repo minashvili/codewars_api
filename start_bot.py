@@ -112,7 +112,7 @@ def get_text_messages(message):
             insert_solution_to_db('kata_from_codewars.db', get_name_user, id_problem_codewars)
             cout_done += 1            
             print(cout_done)
-            # Тут задается следующие вермя, когда дергнится функция Триза triz('') и cout_done = 0
+            # Тут задается следующее время, когда дернутся функции Триза triz('') и cout_done = 0
             timer = threading.Timer(random.randint(1,27), super_reset)
             timer.start()
 
