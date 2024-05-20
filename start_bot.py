@@ -78,7 +78,7 @@ def triz(message):
     btn1 = types.KeyboardButton("Done")
     #btn2 = types.KeyboardButton("Statistics")
     markup.add(btn1)
-    bot.send_message('-1002115846059', f"Радар Академии ТРИЗ 📡 зафексировал противоречие! \
+    bot.send_message('-1002115846059', f"Радар Академии ТРИЗ 📡 зафиксировал противоречие! \
                      {get_problem} ", reply_markup=markup) 
     
 
